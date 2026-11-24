@@ -3,20 +3,24 @@ import Reveal from './Reveal'
 
 interface SectionProps {
   id: string
-  index: string
-  title: string
+  eyebrow: string
+  title: ReactNode
+  intro?: string
   children: ReactNode
   className?: string
 }
 
-export default function Section({ id, index, title, children, className = '' }: SectionProps) {
+export default function Section({ id, eyebrow, title, intro, children, className = '' }: SectionProps) {
   return (
-    <section id={id} className={`mx-auto max-w-5xl px-6 py-20 sm:py-24 ${className}`}>
+    <section id={id} className={`relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 ${className}`}>
       <Reveal>
-        <div className="mb-10 flex items-center gap-4">
-          <span className="font-mono text-sm text-sky-400">{index}</span>
-          <h2 className="text-2xl font-bold tracking-tight text-slate-100 sm:text-3xl">{title}</h2>
-          <div className="h-px flex-1 bg-slate-800" />
+        <div className="mb-12 max-w-2xl sm:mb-16">
+          <p className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-violet-300/80 uppercase">
+            <span className="h-px w-8 bg-accent-gradient" />
+            {eyebrow}
+          </p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">{title}</h2>
+          {intro && <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">{intro}</p>}
         </div>
       </Reveal>
       {children}
